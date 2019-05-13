@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 8080
 const bodyParser = require('body-parser');
 const userRoutes = require("./server/routes/users.routes");
 
@@ -18,4 +18,4 @@ app.get('/*', (req, res)=>{
     res.redirect('back');
 })
 
-app.listen(process.env.PORT || PORT, console.log(`Listening on Port: ${PORT}`));
+app.listen(PORT);
