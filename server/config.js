@@ -1,5 +1,5 @@
-process.env.DBHOST = "sql9.freemysqlhosting.net"
-process.env.DBPORT = "3306"
+process.env.hostname = "sql9.freemysqlhosting.net"
+process.env.PORT = "3306"
 process.env.DBUSER = "sql9291340"
 process.env.DBPASSWORD = "tpxD2T4wuz"
 process.env.DBNAME = "sql9291340"
