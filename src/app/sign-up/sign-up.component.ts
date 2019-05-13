@@ -1,9 +1,15 @@
+
+// Version 1
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 import { AlertService } from '../services/alert.service';
 import { UserService } from '../services/user.service';
 import { RestService} from '../services/rest.service';
+
+
 
 @Component({
   selector: 'app-sign-up',
@@ -14,11 +20,6 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   loading = false;
   submitted = false;
-  firstName: string;
-  lastName: string;
-  username: string;
-  password: string;
-  email: string;
   public user = {};
   public value = '';
   constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService,
@@ -32,5 +33,7 @@ export class SignUpComponent implements OnInit {
     console.log("am i here?")
     this.submitted = true; 
     this.restService.addUser(this.user).subscribe(val =>  console.log(val))
+
   }
+
   }
