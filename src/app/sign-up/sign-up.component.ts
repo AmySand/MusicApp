@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   loading = false;
   submitted = false;
-  public user = [{}];
+  public user: {};
   public value = '';
   constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService,
   private alertService: AlertService, public restService: RestService) { }
