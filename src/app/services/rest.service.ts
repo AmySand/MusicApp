@@ -56,3 +56,9 @@ const httpOptions = {
     'Content-Type':  'application/json'
   })
 };
+export interface UserObject {
+  firstName: string;
+  lastName: string;
+  password: string;
+  email: string;
+};
