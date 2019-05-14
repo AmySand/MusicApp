@@ -6,12 +6,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
   })
- export interface UserObject {
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-  }
+
 
 export class RestService {
 
@@ -66,3 +61,9 @@ const httpOptions = {
     'Content-Type':  'application/json'
   }),
 };
+export interface UserObject {
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+}
