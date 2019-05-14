@@ -8,7 +8,6 @@ import { first } from 'rxjs/operators';
 import { AlertService } from '../services/alert.service';
 import { UserService } from '../services/user.service';
 import { RestService} from '../services/rest.service';
-import { userInfo } from 'os';
 
 
 
@@ -24,11 +23,8 @@ export class SignUpComponent implements OnInit {
   submitted = false;
   public user: {};
   public value = '';
-  
   constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService,
-  private alertService: AlertService, public restService: RestService) { }
-  
-  
+ private alertService: AlertService, public restService: RestService) { }
   ngOnInit() {
     console.log(this.user);
     interface UserObject {
@@ -46,8 +42,8 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("am i here?")
-    this.submitted = true; 
+    console.log('am i here?');
+    this.submitted = true;
     this.restService.addUser(this.user).subscribe(val =>  console.log(val))
 
   }
