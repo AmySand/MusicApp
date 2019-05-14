@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AlertService } from '../services/alert.service';
 import { UserService } from '../services/user.service';
-import { RestService} from '../services/rest.service';
+import { RestService, UserObject} from '../services/rest.service';
 
 
 
@@ -21,24 +21,19 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   loading = false;
   submitted = false;
-  public user: '';
+  public user: UserObject = {
+    firstName: '',
+   lastName: '',
+    email: '',
+    password: '',
+};
+
   public value = '';
   constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService,
  private alertService: AlertService, public restService: RestService) { }
+ 
   ngOnInit() {
     console.log(this.user);
-    interface UserObject {
-      firstName: string;
-      lastName: string;
-      email: string;
-      password: string;
-    }
-    const user: UserObject = {
-      firstName: '',
-     lastName: '',
-      email: '',
-      password: '',
-  };
   }
 
   onSubmit() {

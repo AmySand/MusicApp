@@ -6,13 +6,22 @@ import { map, catchError, tap } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
   })
+ export interface UserObject {
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+  }
+
 export class RestService {
 
 constructor(private http: HttpClient) {}
   private extractData(res: Response) {
     let body = res;
     return body || { };
+    
   }
+ 
   // clear alert message on route change
   getUsers(): Observable<any> {
       return this.http.get('/users/all');
@@ -35,6 +44,7 @@ constructor(private http: HttpClient) {}
       catchError(this.handleError<any>('deleteUser'))
     );
   }
+ 
 
 private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
@@ -54,11 +64,5 @@ private handleError<T> (operation = 'operation', result?: T) {
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
-  })
-};
-export interface UserObject {
-  firstName: string;
-  lastName: string;
-  password: string;
-  email: string;
+  }),
 };
