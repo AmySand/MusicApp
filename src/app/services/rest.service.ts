@@ -9,14 +9,17 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 
 export class RestService {
+   httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    }),
+  };
 
 constructor(private http: HttpClient) {}
   private extractData(res: Response) {
-    let body = res;
-    return body || { };
-    
+    // let body = res;
+    // return body || { };
   }
- 
   // clear alert message on route change
   getUsers(): Observable<any> {
       return this.http.get('/users/all');
@@ -33,15 +36,14 @@ constructor(private http: HttpClient) {}
     // .pipe(map(this.extractData));
   }
 
-  deleteUser (id): Observable<any> {
-    return this.http.delete<any>('users/' + id, httpOptions).pipe(
+  deleteUser(id): Observable<any> {
+    return this.http.delete<any>('users/' + id, this.httpOptions).pipe(
       tap(_ => console.log(`deleted user id=${id}`)),
       catchError(this.handleError<any>('deleteUser'))
     );
   }
- 
 
-private handleError<T> (operation = 'operation', result?: T) {
+private handleError<T>(operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 
     // TODO: send the error to remote logging infrastructure
@@ -56,14 +58,10 @@ private handleError<T> (operation = 'operation', result?: T) {
 }
 }
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json'
-  }),
-};
+
 export interface UserObject {
-  firstName: string,
-  lastName: string,
-  email: string,
-  password: string,
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
 }

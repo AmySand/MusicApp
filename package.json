@@ -7,6 +7,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server",
+    "front" : "ng build --watch",
     "build": "ng build --prod",
     "backend": "nodemon server",
     "test": "ng test",

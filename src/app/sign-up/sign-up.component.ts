@@ -1,12 +1,6 @@
-
-// Version 1
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { AlertService } from '../services/alert.service';
-import { UserService } from '../services/user.service';
 import { RestService, UserObject} from '../services/rest.service';
 
 
@@ -18,9 +12,10 @@ import { RestService, UserObject} from '../services/rest.service';
 })
 export class SignUpComponent implements OnInit {
 
-  signUpForm: FormGroup;
+  // signUpForm: FormGroup;
   loading = false;
   submitted = false;
+  //  setting the object interface to a variable
   public user: UserObject = {
     firstName: '',
    lastName: '',
@@ -29,18 +24,15 @@ export class SignUpComponent implements OnInit {
 };
 
   public value = '';
-  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService,
- private alertService: AlertService, public restService: RestService) { }
- 
+  constructor(private formBuilder: FormBuilder, private router: Router, public restService: RestService) { }
   ngOnInit() {
     console.log(this.user);
   }
-
+// conected to the submit button and the form tag
   onSubmit() {
     console.log('am i here?');
     this.submitted = true;
-    this.restService.addUser(this.user).subscribe(val =>  console.log(val))
-
+    this.restService.addUser(this.user).subscribe(val =>  console.log(val));
+    console.log(this.user);
   }
-
   }

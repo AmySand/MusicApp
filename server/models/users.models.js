@@ -1,3 +1,4 @@
+
 const pool = require('../connection').pool;
 const bcrypt = require('bcrypt');
 const saltRounds = 5;
@@ -10,12 +11,12 @@ function signup(req, res){
         }
         let password = bcrypt.hashSync(req.body.password, saltRounds);
         let email = req.body.email;
-        let firstname = req.body.firstName;
-        let lastname = req.body.lastName;
-         
+        let firstName = req.body.firstName;
+        let lastName = req.body.lastName;
+         console.log(password);
 
         pool.query("INSERT INTO users (`firstName`, `lastName`, `email`, `password`) VALUES(?,?,?,?)", 
-        [firstname, lastname, email, password], (err, result)=>{
+        [firstName, lastName, email, password], (err, result)=>{
             if(!err){
                 return res.send({message:'Signed Up!'});
             }
@@ -27,8 +28,8 @@ function signup(req, res){
 
 function login(req, res){
     pool.query("SELECT * FROM users WHERE email = ?", [req.body.email], (err, result)=>{
-        if(result[0]){
-            if(bcrypt.compareSync(req.body.password, result[0].password)){
+        if(result){
+            if(bcrypt.compareSync(req.body.password, result.password)){
             return res.send({message: "WELCOME BACK!"});
         }
         else{
